@@ -1,0 +1,135 @@
+body{
+ zoom: 0.66;
+}
+
+.phone-bg{
+  position: fixed;
+  top: 20pt;
+  left:20pt;
+bottom: 0;
+right: 0;
+
+  background: url(/assets/images/background.png);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 424pt;
+}
+
+.phone-content{
+  position: fixed;
+  top: 122pt;
+  left:44pt;
+  width: 375pt;
+  height: 667pt;
+
+border-radius: 4px;
+  background-color: black;
+
+  z-index: 1;
+
+}
+
+.icon{
+  display: inline-block;
+  width: 80pt;
+  height: 80pt;
+
+  border-radius: 20pt;
+  position: absolute;
+  top: 40pt;
+  animation: 2s infinite;
+  /*animation-direction: alternate;*/
+}
+
+.icon.skype{
+  left: 147.5pt;
+  background-color: #08c;
+  animation-name: pulseLeft;
+  margin-left: -40pt;
+}
+
+.icon.autorap{
+  right: 147.5pt;
+  background-color: crimson;
+  animation-name: pulseRight;
+  margin-right: -40pt;
+
+}
+
+
+
+@keyframes pulseLeft {
+0% {
+left: 40pt;
+border-radius: 20pt;
+}
+
+30% {
+  left: 50%;
+  transform: scale(1,0.5);
+  border-radius: 50%;
+}
+
+55% {
+  left: 75%;
+  transform: scale(0.5,1);
+  border-radius: 70%;
+}
+
+70% {
+  left: 50%;
+  transform: scale(1,0.8);
+  border-radius: 70%;
+}
+
+90% {
+  left: 40%;
+  transform: scale(0.8,1);
+  border-radius: 70%;
+}
+
+100% {
+  left:50%;
+  transform: scale(1,1);
+  border-radius: 20pt;
+}
+
+}
+
+
+@keyframes pulseRight {
+  0% {
+  right: 40pt;
+  border-radius: 20pt;
+  }
+
+  30% {
+    right: 50%;
+    transform: scale(1,0.5);
+    border-radius: 50%;
+  }
+
+  55% {
+    right: 75%;
+    transform: scale(0.5,1);
+    border-radius: 70%;
+  }
+
+  70% {
+    right: 50%;
+    transform: scale(1,0.8);
+    border-radius: 70%;
+  }
+
+  90% {
+    right: 40%;
+    transform: scale(0.8,1);
+    border-radius: 70%;
+  }
+
+  100% {
+    right:50%;
+    transform: scale(1,1);
+    border-radius: 20pt;
+  }
+}
