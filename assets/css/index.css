@@ -1,135 +1,171 @@
-body{
- zoom: 0.66;
+body {
+  zoom: 0.66;
 }
-
-.phone-bg{
+.phone-bg {
   position: fixed;
   top: 20pt;
-  left:20pt;
-bottom: 0;
-right: 0;
-
+  left: 20pt;
+  bottom: 0;
+  right: 0;
   background: url(/assets/images/background.png);
   background-repeat: no-repeat;
   background-position: left top;
   background-size: 424pt;
 }
-
-.phone-content{
+.phone-content {
   position: fixed;
   top: 122pt;
-  left:44pt;
+  left: 44pt;
   width: 375pt;
   height: 667pt;
-
-border-radius: 4px;
+  border-radius: 4px;
   background-color: black;
-
+  overflow: hidden;
   z-index: 1;
-
 }
-
-.icon{
+.bg-container {
+  width: 375pt;
+  height: 667pt;
+  transform: rotate(20deg);
+}
+.side-bg {
+  position: absolute;
+  width: 500pt;
+  height: 5427pt;
+  animation: 30s infinite;
+  animation-timing-function: linear;
+  background-repeat: repeat;
+}
+.side-bg.left-bg {
+  background: url(/assets/images/left.jpg);
+  right: 50%;
+  animation-name: slideUp;
+}
+.side-bg.right-bg {
+  background: url(/assets/images/right.jpg);
+  left: 50%;
+  animation-name: slideDown;
+}
+.icon {
   display: inline-block;
   width: 80pt;
   height: 80pt;
-
   border-radius: 20pt;
   position: absolute;
   top: 40pt;
   animation: 2s infinite;
   /*animation-direction: alternate;*/
 }
-
-.icon.skype{
+.icon.skype {
   left: 147.5pt;
   background-color: #08c;
   animation-name: pulseLeft;
   margin-left: -40pt;
 }
-
-.icon.autorap{
+.icon.autorap {
   right: 147.5pt;
   background-color: crimson;
   animation-name: pulseRight;
   margin-right: -40pt;
-
 }
-
-
-
-@keyframes pulseLeft {
-0% {
-left: 40pt;
-border-radius: 20pt;
-}
-
-30% {
+.start-shuffle-logo {
+  position: absolute;
   left: 50%;
-  transform: scale(1,0.5);
-  border-radius: 50%;
+  top: 160pt;
+  margin-left: -150pt;
+  background: url(/assets/images/logo_start.svg);
+  width: 300pt;
+  height: 62pt;
+  /*padding: 10pt;*/
+  background-size:contain;;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 4pt solid #41ffba;
 }
-
-55% {
-  left: 75%;
-  transform: scale(0.5,1);
-  border-radius: 70%;
+.start-shuffle-text {
+  position: absolute;
+  top: 320pt;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-family: sans-serif;
+  font-size: 22pt;
+  text-transform: uppercase;
 }
-
-70% {
+.big-button{
+  width: 280pt;
+  margin-left: -158pt;
+  padding: 18pt;
+  color: #8B25E5;
+  background-color: #41ffba;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 22pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.start-shuffle {
+  position: absolute;
+  top: 500pt;
   left: 50%;
-  transform: scale(1,0.8);
-  border-radius: 70%;
+}
+#page-1 {
+  display: none;
+}
+#page-2 .bg-container {
+  transform: none;
+}
+#page-2 .start-shuffle{
+  top: 340pt;
+}
+.nav-bar-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90pt;
+  border-bottom: 3pt solid #41ffba;
+  background-color: rgba(139, 37, 229, 0.6);
+}
+.nav-bar-header .logo{
+  position: absolute;
+  top:30pt;
+  left: 50%;
+  height: 36pt;
+  width: 170pt;
+  margin-left: -85pt;
+  background: url(/assets/images/logo.svg);
+  background-size: contain;
+  background-position: center center;
+  border: 3pt solid #41ffba;
 }
 
-90% {
-  left: 40%;
-  transform: scale(0.8,1);
-  border-radius: 70%;
+.status-bar{
+  position: absolute;
+  top: 4pt;
+  left: 2pt;
+  right: 2pt;
+  height: 12pt;
+  background: url(/assets/images/status-bar.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
-
-100% {
-  left:50%;
-  transform: scale(1,1);
-  border-radius: 20pt;
-}
-
-}
-
-
-@keyframes pulseRight {
+@keyframes slideDown {
   0% {
-  right: 40pt;
-  border-radius: 20pt;
-  }
-
-  30% {
-    right: 50%;
-    transform: scale(1,0.5);
-    border-radius: 50%;
-  }
-
-  55% {
-    right: 75%;
-    transform: scale(0.5,1);
-    border-radius: 70%;
-  }
-
-  70% {
-    right: 50%;
-    transform: scale(1,0.8);
-    border-radius: 70%;
-  }
-
-  90% {
-    right: 40%;
-    transform: scale(0.8,1);
-    border-radius: 70%;
+    top: -3166px;
   }
 
   100% {
-    right:50%;
-    transform: scale(1,1);
-    border-radius: 20pt;
+    top: 0;
+  }
+}
+@keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -3618px;
   }
 }
