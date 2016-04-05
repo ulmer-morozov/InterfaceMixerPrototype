@@ -77,7 +77,8 @@ body {
   width: 300pt;
   height: 62pt;
   /*padding: 10pt;*/
-  background-size:contain;;
+  background-size: contain;
+  ;
   background-position: center center;
   background-repeat: no-repeat;
   border: 4pt solid #41ffba;
@@ -93,7 +94,7 @@ body {
   font-size: 22pt;
   text-transform: uppercase;
 }
-.big-button{
+.big-button {
   width: 280pt;
   margin-left: -158pt;
   padding: 18pt;
@@ -116,9 +117,32 @@ body {
 #page-2 .bg-container {
   transform: none;
 }
-#page-2 .start-shuffle{
+#page-2 .start-shuffle {
   top: 340pt;
 }
+#page-2 .side-bg.left-bg {
+  background: url(/assets/images/wall.jpg);
+  background-size: contain;
+  animation-name: slideUp-apps;
+}
+#page-2 .side-bg.right-bg {
+  background: url(/assets/images/wall.jpg);
+  background-size: contain;
+  animation-name: slideDown-apps;
+}
+#page-2 .side-bg {
+  width: 190pt;
+  height: calc(2*3372.5pt);
+}
+#page-2.results .start-shuffle {
+  display: none;
+}
+#page-2.results .restart-shuffle {
+  position: absolute;
+  top: 500pt;
+  left: 50%;
+}
+#page-2.results .side-bg
 .nav-bar-header {
   position: absolute;
   top: 0;
@@ -128,9 +152,9 @@ body {
   border-bottom: 3pt solid #41ffba;
   background-color: rgba(139, 37, 229, 0.6);
 }
-.nav-bar-header .logo{
+.nav-bar-header .logo {
   position: absolute;
-  top:30pt;
+  top: 30pt;
   left: 50%;
   height: 36pt;
   width: 170pt;
@@ -140,8 +164,7 @@ body {
   background-position: center center;
   border: 3pt solid #41ffba;
 }
-
-.status-bar{
+.status-bar {
   position: absolute;
   top: 4pt;
   left: 2pt;
@@ -154,9 +177,8 @@ body {
 }
 @keyframes slideDown {
   0% {
-    top: -3166px;
+    top: -2713.5pt;
   }
-
   100% {
     top: 0;
   }
@@ -166,6 +188,23 @@ body {
     top: 0;
   }
   100% {
-    top: -3618px;
+    top: -2713.5pt;
+  }
+}
+
+@keyframes slideDown-apps {
+  0% {
+    top: -3372.5pt;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes slideUp-apps {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -3372.5pt;
   }
 }
