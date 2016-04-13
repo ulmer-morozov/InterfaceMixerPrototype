@@ -18,6 +18,9 @@ var apps = [
         name: "Invision",
         image: "invision"
     }, {
+        name: "You Tube",
+        image: "youtube"
+    }, {
         name: "Yandex Trains",
         image: "trains"
     }, {
@@ -27,33 +30,57 @@ var apps = [
         name: "Uber",
         image: "uber"
     }, {
+        name: "LinkedIn",
+        image: "linkedin"
+    }, {
         name: "Medusa",
         image: "medusa"
     }, {
         name: "Trip Advisor",
         image: "trip_advisor"
-    }, {
+    },
+    {
+        name: "Navigator",
+        image: "navigator"
+    },
+    {
         name: "Some Game",
         image: "game"
     }, {
         name: "Some Game2",
         image: "game2"
+    }, {
+        name: "Skype",
+        image: "skype"
     }
 ];
+var combinations = [
+    { firstAppIndex: 1, secondAppIndex: 16, video: "skype" },
+    { firstAppIndex: 4, secondAppIndex: 10, video: "grndr" },
+    { firstAppIndex: 13, secondAppIndex: 6, video: "youtube" }
+];
+var animationNames = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 var leftAnimation;
 var rightAnimation;
 var appContainerLeft = $("#app-container-left");
 var appContainerRight = $("#app-container-right");
 var page1 = $("#page-1");
 var page2 = $("#page-2");
+var page3 = $("#page-3");
 var startAppButton = page1.find(".start-shuffle");
 var startShuffleButton = page2.find(".start-shuffle");
 var restartShuffleButton = page2.find(".restart-shuffle");
+var showCombinationButton = page2.find(".check-out");
+var randomizeAfterVideoButton = page3.find(".start-shuffle-after-video");
+var videoCombination = page3.find("video.combinationVideo");
+var video = videoCombination[0];
 var leftAppLabel = $(".leftAppLabel");
 var rightAppLabel = $(".rightAppLabel");
 var appLabels = $(".app-labels");
 var phoneContentWidth = $(".phone-content").width();
 var phoneContentHeight = $(".phone-content").height();
+var lastCombinationIndex;
+var lastCombination;
 function fillAppContainers() {
     for (var key in apps) {
         var app = apps[key];
@@ -70,17 +97,33 @@ function createElementForApp(appInfo) {
     appContainerLeft.append(resultElement.clone());
     appContainerRight.append(resultElement.clone());
 }
+var oneAppHeight = undefined;
+var headerHeight = undefined;
+var topY = undefined;
 function scrollContainerToIndex(element, index, complete) {
     var animationTime = 2000;
-    var oneAppHeight = appContainerLeft.find(".app").height();
-    var headerHeight = page2.find(".nav-bar-header").height();
-    var topY = appLabels.position().top + appLabels.outerHeight(true);
+    if (oneAppHeight == undefined) {
+        oneAppHeight = appContainerLeft.find(".app").height();
+    }
+    if (headerHeight == undefined) {
+        headerHeight = page2.find(".nav-bar-header").height();
+    }
+    if (topY == undefined) {
+        topY = appLabels.position().top + appLabels.outerHeight(true);
+    }
     var position = topY - index * oneAppHeight;
     element.animate({ top: position }, animationTime, "swing", complete);
 }
 function getRandomAppIndex() {
     var offset = 4;
-    var randomIndex = offset + Math.ceil(Math.random() * apps.length);
+    var randomIndex = offset + Math.ceil(Math.random() * apps.length - 1);
+    return randomIndex;
+}
+function getRandomCombinationIndex() {
+    var randomIndex;
+    do {
+        randomIndex = Math.ceil(Math.random() * combinations.length - 1);
+    } while (randomIndex == lastCombinationIndex);
     return randomIndex;
 }
 function setActiveApp(container, index) {
@@ -130,8 +173,10 @@ function completeRandomization() {
     page2.addClass("results");
 }
 function addAnimationToAppContaiers() {
-    var firstAppIndex = getRandomAppIndex();
-    var secondAppIndex = getRandomAppIndex();
+    lastCombinationIndex = getRandomCombinationIndex();
+    lastCombination = combinations[lastCombinationIndex];
+    var firstAppIndex = lastCombination.firstAppIndex;
+    var secondAppIndex = lastCombination.secondAppIndex;
     while (firstAppIndex === secondAppIndex) {
         secondAppIndex = getRandomAppIndex();
     }
@@ -153,16 +198,53 @@ function restartShuffle() {
     page2.removeClass("results");
     goShuffling();
 }
+function restartShuffleAfterVideo() {
+    page3.addClass("animated zoomOut");
+    page3.one(animationNames, function () {
+        page3.hide();
+        page3.removeClass("animated zoomOut");
+        page3.unbind(animationNames);
+        startShuffleButton.hide();
+        page2.removeClass("results");
+        page2.addClass("animated zoomIn");
+        page2.show();
+        goShuffling();
+    });
+}
 function startApp() {
-    var animationNames = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
     page1.addClass("animated zoomOut");
     page1.one(animationNames, function () {
         page1.hide();
         page1.removeClass("animated zoomOut");
-        page1.one(animationNames, function () { });
+        page1.unbind(animationNames);
         page2.addClass("animated zoomIn");
         page2.show();
         startBgAnimationOnPage2();
+    });
+}
+function combinationVideoEnded() {
+    randomizeAfterVideoButton.show();
+    randomizeAfterVideoButton.addClass("animated zoomIn");
+    randomizeAfterVideoButton.one(animationNames, function () {
+        page3.removeClass("animated zoomIn");
+        randomizeAfterVideoButton.unbind(animationNames);
+    });
+}
+function showCombination() {
+    var videoUrl = "/assets/videos/" + lastCombination.video + ".mp4";
+    page2.addClass("animated zoomOut");
+    page2.one(animationNames, function () {
+        page2.hide();
+        page2.removeClass("animated zoomOut");
+        page2.unbind(animationNames);
+        videoCombination.attr("src", videoUrl);
+        page3.addClass("animated zoomIn");
+        randomizeAfterVideoButton.hide();
+        page3.show();
+        page3.one(animationNames, function () {
+            page3.unbind(animationNames);
+            video.play();
+        });
     });
 }
 function initialization() {
@@ -171,10 +253,14 @@ function initialization() {
     startAppButton.click(startApp);
     startShuffleButton.click(goShuffling);
     restartShuffleButton.click(restartShuffle);
+    showCombinationButton.click(showCombination);
+    randomizeAfterVideoButton.click(restartShuffleAfterVideo);
+    page3.hide();
+    video.onended = combinationVideoEnded;
 }
 initialization();
 function startBgAnimationOnPage2() {
-    var duration = 20000;
+    var duration = 60000;
     appContainerLeft.css("top", 0);
     leftAnimation = appContainerLeft.animate({ top: -appContainerLeft.height() / 2 }, duration, "linear");
     appContainerRight.css("top", -appContainerRight.height() / 2);
