@@ -54,13 +54,17 @@ var apps: IAppInfo[] = [
     }, {
         name: "Skype",
         image: "skype"
+    }, {
+        name: "Tinder",
+        image: "tinder"
     }
 ];
 
 var combinations: ICombination[] = [
     { firstAppIndex: 1, secondAppIndex: 16, video: "skype" },
     { firstAppIndex: 4, secondAppIndex: 10, video: "grndr" },
-    { firstAppIndex: 13, secondAppIndex: 6, video: "youtube" }
+    { firstAppIndex: 13, secondAppIndex: 6, video: "youtube" },
+    { firstAppIndex: 3, secondAppIndex: 17, video: "tinder" },
 ];
 
 var animationNames = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
