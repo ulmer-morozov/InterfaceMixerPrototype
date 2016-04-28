@@ -335,6 +335,8 @@ function initialization() {
     page3.hide();
 
     video.onended = combinationVideoEnded;
+    video.addEventListener('webkitendfullscreen', combinationVideoEnded, false);
+
 }
 
 // старт приложения

@@ -261,6 +261,7 @@ function initialization() {
     randomizeAfterVideoButton.click(restartShuffleAfterVideo);
     page3.hide();
     video.onended = combinationVideoEnded;
+    video.addEventListener('webkitendfullscreen', combinationVideoEnded, false);
 }
 initialization();
 function startBgAnimationOnPage2() {
