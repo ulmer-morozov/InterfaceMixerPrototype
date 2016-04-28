@@ -88,7 +88,7 @@ function fillAppContainers() {
     }
 }
 function createElementForApp(appInfo) {
-    var imagePath = "/assets/images/screens/" + appInfo.image + ".jpeg";
+    var imagePath = "assets/images/screens/" + appInfo.image + ".jpeg";
     var appElement = $("<div/>")
         .addClass("app");
     var appImageElement = $("<img/>")
@@ -144,7 +144,7 @@ function setActiveApp(container, index) {
 function setAppLabel(labelElement, appIndex) {
     var normalizedAppIndex = appIndex % apps.length;
     var appInfo = apps[normalizedAppIndex];
-    var imagePath = "/assets/images/icons/" + appInfo.image + ".png";
+    var imagePath = "assets/images/icons/" + appInfo.image + ".png";
     var iconElement = $("<img/>").attr("src", imagePath).addClass("app-icon");
     var textElement = $("<span/>").text(appInfo.name);
     labelElement.empty().append(iconElement).append(textElement);
@@ -231,7 +231,7 @@ function combinationVideoEnded() {
     });
 }
 function showCombination() {
-    var videoUrl = "/assets/videos/" + lastCombination.video + ".mp4";
+    var videoUrl = "assets/videos/" + lastCombination.video + ".mp4";
     page2.addClass("animated zoomOut");
     page2.one(animationNames, function () {
         page2.hide();

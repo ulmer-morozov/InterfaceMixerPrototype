@@ -104,7 +104,7 @@ function fillAppContainers() {
 }
 
 function createElementForApp(appInfo: IAppInfo) {
-    let imagePath = `/assets/images/screens/${appInfo.image}.jpeg`;
+    let imagePath = `assets/images/screens/${appInfo.image}.jpeg`;
 
     let appElement =
         $("<div/>")
@@ -173,7 +173,7 @@ function setActiveApp(container: JQuery, index: number) {
 function setAppLabel(labelElement: JQuery, appIndex: number) {
     let normalizedAppIndex = appIndex % apps.length;
     let appInfo = apps[normalizedAppIndex];
-    let imagePath = `/assets/images/icons/${appInfo.image}.png`;
+    let imagePath = `assets/images/icons/${appInfo.image}.png`;
 
     let iconElement = $("<img/>").attr("src", imagePath).addClass("app-icon");
     let textElement = $("<span/>").text(appInfo.name);
@@ -294,7 +294,7 @@ function combinationVideoEnded() {
 }
 
 function showCombination() {
-    let videoUrl = `/assets/videos/${lastCombination.video}.mp4`;
+    let videoUrl = `assets/videos/${lastCombination.video}.mp4`;
 
     page2.addClass("animated zoomOut");
     page2.one(animationNames,
