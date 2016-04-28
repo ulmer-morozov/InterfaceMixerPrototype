@@ -308,6 +308,8 @@ function showCombination() {
             page2.unbind(animationNames);
 
             videoCombination.attr("src", videoUrl);
+            video.play();
+
 
             page3.addClass("animated zoomIn");
             randomizeAfterVideoButton.hide();
@@ -316,7 +318,6 @@ function showCombination() {
             page3.one(animationNames,
                 () => {
                     page3.unbind(animationNames);
-                    video.play();
                 });
         });
 }

@@ -242,12 +242,12 @@ function showCombination() {
         page2.removeClass("animated zoomOut");
         page2.unbind(animationNames);
         videoCombination.attr("src", videoUrl);
+        video.play();
         page3.addClass("animated zoomIn");
         randomizeAfterVideoButton.hide();
         page3.show();
         page3.one(animationNames, function () {
             page3.unbind(animationNames);
-            video.play();
         });
     });
 }
